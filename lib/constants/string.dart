@@ -41,7 +41,7 @@ static const String logoutFailed = 'Logout Failed';
   static const String invalidPasswordEmpty ='Password can\'t be empty';
   static const String invalidPasswordTooShort = 'Your password is too short';
   // homepage
-  static const String homePage = 'Admin Dashboard';
+  static const String homePage = '99 fight school';
   // user options
   static const String historicalRecords = 'Historical Records';
   static const String vaccination = 'Vaccination';

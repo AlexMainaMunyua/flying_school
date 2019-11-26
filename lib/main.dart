@@ -6,7 +6,6 @@ import 'package:flying_school/core/services/firebase_email_link_handler.dart';
 import 'package:flying_school/pages/auth_widget-builder.dart';
 import 'package:flying_school/pages/auth_widget.dart';
 import 'package:flying_school/pages/email-link_error_presenter.dart';
-import 'package:flying_school/route.dart';
 import 'package:provider/provider.dart';
 
 
