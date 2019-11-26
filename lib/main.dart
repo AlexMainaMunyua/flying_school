@@ -3,6 +3,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flying_school/core/services/authentication.dart';
 import 'package:flying_school/core/services/email_secure_store.dart';
 import 'package:flying_school/core/services/firebase_email_link_handler.dart';
+import 'package:flying_school/core/view/CrudModel.dart';
 import 'package:flying_school/pages/auth_widget-builder.dart';
 import 'package:flying_school/pages/auth_widget.dart';
 import 'package:flying_school/pages/email-link_error_presenter.dart';
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: <SingleChildCloneableWidget>[
+        ChangeNotifierProvider(builder: (_)=> locator<CRUDModel>()),
         Provider<AuthService>(
           builder: (_)=>AuthServiceAdapter(
             initialAuthServiceType: initialAuthServiceType,
@@ -57,6 +59,12 @@ class MyApp extends StatelessWidget {
       child: AuthWidgetBuilder(
         builder: (context, AsyncSnapshot<User> userSnapshot) {
           return MaterialApp(
+           builder: (BuildContext context, Widget widget) {
+          ErrorWidget.builder = (FlutterErrorDetails errorDetails) {
+            return getErrorWidget(context, errorDetails);
+          };
+          return widget;
+        },
            home: EmailLinkErrorPresenter.create(
              context,
              child: AuthWidget(userSnapshot: userSnapshot)
