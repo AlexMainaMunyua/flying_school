@@ -22,7 +22,7 @@ class SignInPageBuilder extends StatelessWidget {
               builder: (_, SignInManager manager, __) => SignInPage._(
                 isLoading: isLoading.value,
                 manager: manager,
-                title: 'Veternary_project'
+                title: '99 Flying school'
               ),
             )
           ),
@@ -87,7 +87,7 @@ class SignInPage extends StatelessWidget {
                   textColor: Colors.white,
                   color: Colors.pink.shade900
                 ),
-                  SizedBox(height: 48.0,),
+                  SizedBox(height: 100.0,),
               ],
             ),
 
