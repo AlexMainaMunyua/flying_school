@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flying_school/core/services/authentication.dart';
+import 'package:flying_school/pages/home.dart';
 import 'package:flying_school/pages/myhomepage.dart';
 import 'package:flying_school/pages/sign_in/sign_in_page.dart';
 
