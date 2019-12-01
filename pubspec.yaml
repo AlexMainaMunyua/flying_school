@@ -27,6 +27,8 @@ dependencies:
   flutter_secure_storage:
   firebase_dynamic_links:
   rxdart:
+  url_launcher:
+  share: ^0.6.3+3
   webview_flutter:
   flare_flutter:
   flutter_launcher_icons:

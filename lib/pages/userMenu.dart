@@ -10,10 +10,20 @@ import 'package:provider/provider.dart';
 
 import 'dart:async';
 import 'package:flutter/services.dart';
+import 'package:url_launcher/url_launcher.dart';
 class UserMenu extends StatelessWidget {
   const UserMenu({this.isLoading});
   final bool isLoading;
   @override
+
+  _launcher(String toMailId, String subject, String body)async{
+    var url = 'malto:$toMailId?subject=$subject=&body =$body';
+    if(await canLaunch(url)){
+      await launch(url);
+    }else{
+      throw 'Could not launch $url';
+    }
+  }
 
   Widget build(BuildContext context) {
     final user = Provider.of<User>(context);
@@ -66,27 +76,6 @@ if(didRequestSignOut ==true){
     return Expanded(
       child: ListView(
         children: <Widget>[
-          ExpansionTile(
-            leading: Icon(Icons.airline_seat_legroom_normal),
-            title: Text(Strings.deworming),
-            children: <Widget>[
-              Divider(),
-              ListTile( title: Text(Strings.cattle),trailing: Icon(Icons.arrow_forward_ios),),
-              Divider(),
-              ListTile( title: Text(Strings.dog),trailing: Icon(Icons.arrow_forward_ios),),
-              Divider(),
-              ListTile( title: Text(Strings.poultry),trailing: Icon(Icons.arrow_forward_ios),),
-              Divider(),
-              ListTile( title: Text(Strings.goat),trailing: Icon(Icons.arrow_forward_ios),),
-              Divider(),
-              ListTile( title: Text(Strings.sheep),trailing: Icon(Icons.arrow_forward_ios),),
-              Divider(),
-              ListTile( title: Text(Strings.horse),trailing: Icon(Icons.arrow_forward_ios),),
-              Divider(),
-              ListTile( title: Text(Strings.donkey),trailing: Icon(Icons.arrow_forward_ios),),
-
-            ],
-          ),
           ListTile(
             leading: Icon(Icons.assessment),
             title: Text(Strings.vaccination),),

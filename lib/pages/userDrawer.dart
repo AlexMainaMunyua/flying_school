@@ -4,13 +4,27 @@ import 'package:flying_school/common_widgets/platform_alert_dialog.dart';
 import 'package:flying_school/common_widgets/platform_exception_alert_dialog.dart';
 import 'package:flying_school/constants/string.dart';
 import 'package:flying_school/core/services/authentication.dart';
+import 'package:flying_school/pages/blog/newstories.dart';
+import 'package:flying_school/pages/settings/aboutnintynine.dart';
+import 'package:flying_school/pages/settings/help.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
 import 'package:flying_school/pages/settings.dart';
+import 'package:share/share.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class UserDrawer extends StatelessWidget {
   const UserDrawer({this.isLoading});
   final bool isLoading;
+
+  _launcher(String toMailId, String subject, String body)async{
+    var url = 'malto:$toMailId?subject=$subject=&body =$body';
+    if(await canLaunch(url)){
+      await launch(url);
+    }else{
+      throw 'Could not launch $url';
+    }
+  }
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<User>(context);
@@ -79,7 +93,9 @@ class UserDrawer extends StatelessWidget {
                 color: Colors.black,
               ),
               title: Text('New Story'),
-              onTap: () {}),
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> NewStories()));
+              }),
           ListTile(
               trailing: Icon(
                 Icons.rss_feed,
@@ -97,7 +113,10 @@ class UserDrawer extends StatelessWidget {
                     fontSize: 14.0,
                     fontWeight: FontWeight.bold),
               ),
-              onTap: () {}),
+              onTap: () {
+                Navigator.push(context, 
+                 MaterialPageRoute (builder: (context)=> AboutNintyNite()));
+              }),
           Divider(),
           ListTile(
               leading: Icon(
@@ -105,7 +124,10 @@ class UserDrawer extends StatelessWidget {
                 color: Colors.purple,
               ),
               title: Text('Help'),
-              onTap: () {}),
+              onTap: () {
+                Navigator.push(context, 
+                MaterialPageRoute(builder: (context)=> Help()));
+              }),
           ListTile(
               leading: Icon(
                 Icons.rate_review,
@@ -119,14 +141,13 @@ class UserDrawer extends StatelessWidget {
                 color: Colors.black,
               ),
               title: Text('Share'),
-              onTap: () {}),
-          ListTile(
+              onTap: ()=> Share.share('check out my website https://example.com', subject: 'Look whassssst I made!')),          ListTile(
               leading: Icon(
                 Icons.feedback,
                 color: Colors.indigo,
               ),
               title: Text('App Support Feedback'),
-              onTap: () {}),
+              onTap: () {_launcher('alexmaina79@gmail.com', 'Android App Support & FeedBack', 'Hello support Team');}),
           Divider(),
           SizedBox(
             height: 5,

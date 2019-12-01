@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'personaldetailsform.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Settings extends StatefulWidget {
   Settings({Key key}) : super(key: key);
@@ -10,6 +11,8 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
+
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
