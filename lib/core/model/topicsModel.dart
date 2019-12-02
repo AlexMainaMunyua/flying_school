@@ -23,3 +23,32 @@ class Topics {
     };
   }
 }
+class Blog {
+  final String authorName;
+  final String blogTopicName;
+  final String blogDescription;
+  final String blogContent;
+  final String blogImage;
+  final String id;
+
+  Blog({this.id, this.authorName,this.blogTopicName, this.blogDescription, this.blogContent, this.blogImage});
+
+  Blog.fromMap(Map snapshot, String id)
+    : id = id ?? '',
+    authorName = snapshot['authorName']?? '',
+    blogTopicName = snapshot['blogTopicName']?? '',
+    blogDescription = snapshot['blogDescription']?? '',
+    blogContent = snapshot['blogContent']?? '',
+    blogImage = snapshot['blogImage']?? '';
+
+  toJson(){
+    return{
+      'authorName': authorName,
+      'blogTopicName': blogTopicName,
+      'blogDescription': blogDescription,
+      'blogContent': blogContent,
+      'blogImage': blogImage,
+    };
+  }
+
+}

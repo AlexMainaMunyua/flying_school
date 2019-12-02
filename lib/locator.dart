@@ -7,4 +7,7 @@ GetIt locator = GetIt.instance;
 void setupLocator() {
   locator.registerLazySingleton(()=> TopicApi('Topics'));
   locator.registerLazySingleton(()=> CRUDModel());
+
+  locator.registerLazySingleton(()=> BlogApi('Blog'));
+  locator.registerLazySingleton(()=> BlogCRUDModel());
 }

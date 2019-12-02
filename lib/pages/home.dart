@@ -1,9 +1,11 @@
+
 import 'package:flutter/material.dart';
 import 'package:flying_school/common_widgets/platform_alert_dialog.dart';
 import 'package:flying_school/common_widgets/platform_exception_alert_dialog.dart';
 import 'package:flying_school/constants/string.dart';
 import 'package:flying_school/core/services/authentication.dart';
 import 'package:flying_school/pages/settings.dart';
+import 'package:flying_school/pages/settings/timeline.dart';
 import 'package:flying_school/pages/userDrawer.dart';
 import 'package:provider/provider.dart';
 import 'blog.dart';
@@ -57,6 +59,11 @@ class _HomePageState extends State<HomePage> {
                   showSearch(
                       context: context, delegate: CustomSearchDelegate());
                 }),
+             IconButton(
+                icon: Icon(Icons.timeline),
+                onPressed: () {
+                  Navigator.push(context,MaterialPageRoute(builder: (context)=> TimeLine()));
+                }),
           ],
           bottom: TabBar(
             labelColor: Colors.white,
@@ -71,7 +78,7 @@ class _HomePageState extends State<HomePage> {
         body: TabBarView(
           children: <Widget>[
             MyHomePage(),
-            Blog(),
+            BlogPage(),
           ],
         ),
       ),
