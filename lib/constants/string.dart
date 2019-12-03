@@ -16,7 +16,10 @@ static const String logoutFailed = 'Logout Failed';
   static const String createAnAccount = 'Create an account';
   static const String sendResetLink = 'Send Reset Link';
   static const String password8CharactersLabel = 'Password (8+ characters)';  
+   static const String passwordConfirm = 'Confirm Password';  
+
   static const String passwordLabel = 'password';
+  static const String passwordConfirmPassword = 'confirm password';
   static const String haveAnAccount  = 'Have an account? Sign in';
   static const String needAnAccount = 'Need an account? Register';
   static const String backToSignIn = 'Back to sign in';

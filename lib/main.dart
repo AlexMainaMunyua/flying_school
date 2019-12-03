@@ -4,14 +4,15 @@ import 'package:flying_school/core/services/authentication.dart';
 import 'package:flying_school/core/services/email_secure_store.dart';
 import 'package:flying_school/core/services/firebase_email_link_handler.dart';
 import 'package:flying_school/core/view/CrudModel.dart';
-import 'package:flying_school/pages/auth_widget-builder.dart';
-import 'package:flying_school/pages/auth_widget.dart';
-import 'package:flying_school/pages/email-link_error_presenter.dart';
+
 import 'package:provider/provider.dart';
 
 
 import 'core/services/auth_service_adapter.dart';
 import 'locator.dart';
+import 'pages/authentication/auth_widget-builder.dart';
+import 'pages/authentication/auth_widget.dart';
+import 'pages/sign_in/email-link_error_presenter.dart';
 
 void main() {
   Provider.debugCheckInvalidValueType= null;

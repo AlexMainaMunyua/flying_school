@@ -9,9 +9,10 @@ import 'package:flying_school/pages/settings/aboutnintynine.dart';
 import 'package:flying_school/pages/settings/help.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
-import 'package:flying_school/pages/settings.dart';
 import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import 'settings.dart';
 
 class UserDrawer extends StatelessWidget {
   const UserDrawer({this.isLoading});

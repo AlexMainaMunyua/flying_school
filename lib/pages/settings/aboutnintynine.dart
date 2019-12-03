@@ -9,6 +9,13 @@ class AboutNintyNite extends StatelessWidget {
       appBar: AppBar(
         title: Text('About Us'),
       ),
+      body: Container(
+        child: ListView(
+          children: <Widget>[
+            
+          ],
+        ),
+      )
     
     );
   }

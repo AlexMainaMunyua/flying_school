@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flying_school/core/model/topicsModel.dart';
-import 'package:flying_school/pages/topicDetail.dart';
 
+import 'topicDetail.dart';
 class TopicBuilder extends StatelessWidget {
   final Topics topic;
 

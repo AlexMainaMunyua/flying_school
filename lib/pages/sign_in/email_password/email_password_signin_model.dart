@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flying_school/constants/string.dart';
 import 'package:flying_school/core/services/authentication.dart';
-import 'package:flying_school/pages/sign_in/validator.dart';
+import 'package:flying_school/pages/authentication/validator.dart';
 
 
 enum EmailPasswordSignInFormType {signIn, register, forgotPassword}
@@ -11,6 +11,7 @@ class EmailPasswordSignInModel with EmailAndPasswordValidators, ChangeNotifier{
     @required this.auth,
     this.email = '',
     this.password = '',
+    this.confirmPassword ='',
     this.formType = EmailPasswordSignInFormType.signIn,
     this.isLoading = false,
     this.submitted = false,
@@ -19,6 +20,7 @@ class EmailPasswordSignInModel with EmailAndPasswordValidators, ChangeNotifier{
 
   String email;
   String password;
+  String confirmPassword;
   EmailPasswordSignInFormType formType;
   bool isLoading;
   bool submitted;
@@ -57,6 +59,7 @@ class EmailPasswordSignInModel with EmailAndPasswordValidators, ChangeNotifier{
             updateWith(
               email: '',
               password: '',
+
               formType: formType,
               isLoading: false,
               submitted: false,
@@ -82,6 +85,13 @@ class EmailPasswordSignInModel with EmailAndPasswordValidators, ChangeNotifier{
                 return Strings.password8CharactersLabel;
               }
               return Strings.passwordLabel;
+            }
+
+            String get confirmLabelText{
+              if(formType == EmailPasswordSignInFormType.register){
+                return Strings.passwordConfirm;
+              }
+              return Strings.passwordConfirmPassword;
             }
 
             String get primaryButtonText{
@@ -132,6 +142,12 @@ class EmailPasswordSignInModel with EmailAndPasswordValidators, ChangeNotifier{
                 return passwordRegisterSubmitValidator.isValid(password);
               }
               return passwordRegisterSubmitValidator.isValid(password);
+            }
+
+            bool get canSubmitConfirmPassWord{
+              if(formType == EmailPasswordSignInFormType.register){
+                return passwordRegisterSubmitValidator.isValid(confirmPassword);
+              }
             }
 
             bool get canSubmit{

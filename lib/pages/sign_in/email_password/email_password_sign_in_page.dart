@@ -96,6 +96,12 @@ exception: exception,
       } 
     }
 
+    void _confirmPasswordEditingComplete(){
+      if(model.canSubmit){
+        _node.nextFocus();
+      }
+    }
+
     void _updateFormType(EmailPasswordSignInFormType formType){
       model.updateFormType(formType);
       _emailController.clear();
@@ -139,6 +145,26 @@ exception: exception,
         keyboardAppearance: Brightness.light,
         onChanged: model.updatePassword,
         onEditingComplete: _passwordEditingComplete,
+        
+      );
+    }
+
+     Widget _buildConfirmPasswordField(){
+      return TextField(
+        key: Key('password'),
+        // controller: _passwordController,
+        decoration: InputDecoration(
+          labelText: model.confirmLabelText,
+          errorText: model.passwordErrorText,
+          enabled: !model.isLoading,
+        ),
+        obscureText: true,
+        autocorrect: false,
+        textInputAction: TextInputAction.done,
+        keyboardAppearance: Brightness.light,
+        onChanged: model.updatePassword,
+        onEditingComplete: _passwordEditingComplete,
+        
       );
     }
 
@@ -157,8 +183,12 @@ exception: exception,
          EmailPasswordSignInFormType.forgotPassword) ...<Widget>[
            SizedBox(height: 8.0,),
            _buildPasswordField(),
+         ], 
+         if(model.formType ==EmailPasswordSignInFormType.register)...<Widget>[
+            SizedBox(height: 8.0,),
+           _buildConfirmPasswordField(),
          ],
-         SizedBox(height: 8.0,),
+          SizedBox(height: 8.0,),
          FormSubmitButton(
            key: Key('primary-button'),
            text: model.primaryButtonText,
