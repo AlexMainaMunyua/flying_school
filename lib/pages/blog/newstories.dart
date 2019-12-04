@@ -24,7 +24,6 @@ class _NewStoriesState extends State<NewStories> {
         ],
       ),
       bottomNavigationBar: BottomAppBar(
-        
         color: Colors.grey.shade200,
         child: Container(
           height: 40,

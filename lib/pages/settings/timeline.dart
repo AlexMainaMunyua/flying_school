@@ -7,7 +7,7 @@ class TimeLine extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Blog timeline'),
+        title: Text('Blog timeline',style: TextStyle(fontFamily: 'Righteous',),),
       ),
       body: Container(
         child: ListView(
@@ -15,7 +15,7 @@ class TimeLine extends StatelessWidget {
             ListTile(
               title: Text(
                 'Choose a time period.',
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: TextStyle(fontWeight: FontWeight.bold, fontFamily: 'Righteous',)
               ),
             ),
             Container(
@@ -25,14 +25,14 @@ class TimeLine extends StatelessWidget {
                   'Default (December 01, 2019- Mar 31, 2020)',
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                      color: Colors.white, fontWeight: FontWeight.bold),
+                      fontFamily: 'Righteous',color: Colors.white, fontWeight: FontWeight.bold),
                 ),
               ),
             ),
             ListTile(
               title: Text(
                 'Past',
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: TextStyle(fontFamily:'Righteous',fontWeight: FontWeight.bold),
               ),
             ),
             Divider(),
@@ -48,28 +48,28 @@ class TimeLine extends StatelessWidget {
                           alignment: Alignment.topLeft,
                           child: GestureDetector(
                             onTap: () {},
-                            child: Text('Last Week (Monday -Sunday)'),
+                            child: Text('Last Week (Monday -Sunday)',style: TextStyle(fontFamily: 'Righteous',),),
                           ),
                         ),
                         Align(
                           alignment: Alignment.topLeft,
                           child: GestureDetector(
                             onTap: () {},
-                            child: Text('Last Month (November, 2019)'),
+                            child: Text('Last Month (November, 2019)',style: TextStyle(fontFamily: 'Righteous',),),
                           ),
                         ),
                         Align(
                           alignment: Alignment.topLeft,
                           child: GestureDetector(
                             onTap: () {},
-                            child: Text('Last Year (2018)'),
+                            child: Text('Last Year (2018)',style: TextStyle(fontFamily: 'Righteous',),),
                           ),
                         ),
                         Align(
                           alignment: Alignment.topLeft,
                           child: GestureDetector(
                             onTap: () {},
-                            child: Text('Last Decade (2000 -2010)'),
+                            child: Text('Last Decade (2000 -2010)',style: TextStyle(fontFamily: 'Righteous',),),
                           ),
                         ),
                       ],
@@ -81,7 +81,7 @@ class TimeLine extends StatelessWidget {
             ListTile(
               title: Text(
                 'Present',
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: TextStyle(fontFamily: 'Righteous',fontWeight: FontWeight.bold),
               ),
             ),
             Divider(),
@@ -97,28 +97,28 @@ class TimeLine extends StatelessWidget {
                           alignment: Alignment.topLeft,
                           child: GestureDetector(
                             onTap: () {},
-                            child: Text('This Week (Monday -Sunday)'),
+                            child: Text('This Week (Monday -Sunday)',style: TextStyle(fontFamily: 'Righteous',),),
                           ),
                         ),
                         Align(
                           alignment: Alignment.topLeft,
                           child: GestureDetector(
                             onTap: () {},
-                            child: Text('This Month (December, 2019)'),
+                            child: Text('This Month (December, 2019)',style: TextStyle(fontFamily: 'Righteous',),),
                           ),
                         ),
                         Align(
                           alignment: Alignment.topLeft,
                           child: GestureDetector(
                             onTap: () {},
-                            child: Text('This Year (2019)'),
+                            child: Text('This Year (2019)',style: TextStyle(fontFamily: 'Righteous',),),
                           ),
                         ),
                         Align(
                           alignment: Alignment.topLeft,
                           child: GestureDetector(
                             onTap: () {},
-                            child: Text('This Decade (2000 -2010)'),
+                            child: Text('This Decade (2000 -2010)',style: TextStyle(fontFamily: 'Righteous',),),
                           ),
                         ),
                       ],
@@ -130,7 +130,7 @@ class TimeLine extends StatelessWidget {
             ListTile(
               title: Text(
                 'Custom Range',
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: TextStyle(fontFamily: 'Righteous',fontWeight: FontWeight.bold),
               ),
             ),
             Divider(),

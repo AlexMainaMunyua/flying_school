@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flying_school/core/model/topicsModel.dart';
 import 'package:flying_school/core/services/service.dart';
 
-
 import '../../locator.dart';
 
 class CRUDModel extends ChangeNotifier {
@@ -21,7 +20,6 @@ class CRUDModel extends ChangeNotifier {
 
   Stream<QuerySnapshot> fetchTopicsAsStream() {
     return _api.streamDataCollection();
-
   }
 
   Future<Topics> getTopicsById(String id) async {
@@ -47,41 +45,40 @@ class CRUDModel extends ChangeNotifier {
 ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////
 
-class BlogCRUDModel extends ChangeNotifier{
+class BlogCRUDModel extends ChangeNotifier {
   BlogApi _api = locator<BlogApi>();
 
   List<Blog> blogs;
 
-  Future<List<Blog>> fetchBlogs() async{
+  Future<List<Blog>> fetchBlogs() async {
     var results = await _api.getDataCollection();
     blogs = results.documents
-      .map((doc)=>Blog.fromMap(doc.data, doc.documentID))
-      .toList();
+        .map((doc) => Blog.fromMap(doc.data, doc.documentID))
+        .toList();
     return blogs;
   }
 
-  Stream<QuerySnapshot> fetchBlogAsStream(){
+  Stream<QuerySnapshot> fetchBlogAsStream() {
     return _api.streamDataCollection();
   }
 
-  Future<Blog> getBlogById(String id) async{
+  Future<Blog> getBlogById(String id) async {
     var doc = await _api.getDocumentById(id);
     return Blog.fromMap(doc.data, doc.documentID);
   }
 
-  Future removeBlog(String id)async{
+  Future removeBlog(String id) async {
     await _api.removeDocument(id);
     return;
   }
 
-  Future updateBlog(Blog data, String id)async{
+  Future updateBlog(Blog data, String id) async {
     await _api.updateDocument(data.toJson(), id);
     return;
   }
 
-  Future addBlod(Blog data)async{
+  Future addBlod(Blog data) async {
     var result = await _api.addDocument(data.toJson());
     return result;
   }
-
 }

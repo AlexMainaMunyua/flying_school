@@ -5,13 +5,14 @@ class Topics {
   final String iconText;
   final String description;
 
-  Topics({this.topicName, this.id, this.content, this.iconText, this.description});
+  Topics(
+      {this.topicName, this.id, this.content, this.iconText, this.description});
 
   Topics.fromMap(Map snapshot, String id)
       : id = id ?? '',
         topicName = snapshot['topicName'] ?? '',
         content = snapshot['content'] ?? '',
-        iconText =snapshot['iconText']?? '',
+        iconText = snapshot['iconText'] ?? '',
         description = snapshot['description'] ?? '';
 
   toJson() {
@@ -23,6 +24,7 @@ class Topics {
     };
   }
 }
+
 class Blog {
   final String authorName;
   final String blogTopicName;
@@ -31,18 +33,24 @@ class Blog {
   final String blogImage;
   final String id;
 
-  Blog({this.id, this.authorName,this.blogTopicName, this.blogDescription, this.blogContent, this.blogImage});
+  Blog(
+      {this.id,
+      this.authorName,
+      this.blogTopicName,
+      this.blogDescription,
+      this.blogContent,
+      this.blogImage});
 
   Blog.fromMap(Map snapshot, String id)
-    : id = id ?? '',
-    authorName = snapshot['authorName']?? '',
-    blogTopicName = snapshot['blogTopicName']?? '',
-    blogDescription = snapshot['blogDescription']?? '',
-    blogContent = snapshot['blogContent']?? '',
-    blogImage = snapshot['blogImage']?? '';
+      : id = id ?? '',
+        authorName = snapshot['authorName'] ?? '',
+        blogTopicName = snapshot['blogTopicName'] ?? '',
+        blogDescription = snapshot['blogDescription'] ?? '',
+        blogContent = snapshot['blogContent'] ?? '',
+        blogImage = snapshot['blogImage'] ?? '';
 
-  toJson(){
-    return{
+  toJson() {
+    return {
       'authorName': authorName,
       'blogTopicName': blogTopicName,
       'blogDescription': blogDescription,
@@ -50,5 +58,4 @@ class Blog {
       'blogImage': blogImage,
     };
   }
-
 }

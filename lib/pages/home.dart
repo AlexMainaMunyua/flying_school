@@ -17,9 +17,14 @@ class _HomePageState extends State<HomePage> {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Ninty Nine'),
+          title: Text(
+            'Ninty Nine',
+            style: TextStyle(
+                fontFamily: 'Righteous',
+                color: Colors.white,
+                fontWeight: FontWeight.bold),
+          ),
           actions: <Widget>[
-            // IconButton(icon: Icon(Icons.notifications), onPressed: () {}),
             IconButton(
                 icon: Icon(Icons.search),
                 onPressed: () {
@@ -37,8 +42,24 @@ class _HomePageState extends State<HomePage> {
             labelColor: Colors.white,
             unselectedLabelColor: Colors.white,
             tabs: <Widget>[
-              Tab(text: 'Tutorials'),
-              Tab(text: 'Blog'),
+              Tab(
+                child: Text(
+                  'Tutorials',
+                  style: TextStyle(
+                      fontFamily: 'Righteous',
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+              Tab(
+                child: Text(
+                  'Blog',
+                  style: TextStyle(
+                      fontFamily: 'Righteous',
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
             ],
           ),
         ),

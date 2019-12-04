@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flying_school/animation.dart';
-import 'package:flying_school/constants/string.dart';
 import 'package:flying_school/core/services/authentication.dart';
-import 'package:flying_school/pages/sign_in/sign_in_button.dart';
 import 'package:flying_school/pages/sign_in/sign_in_manager.dart';
-import 'package:flying_school/waderningcude.dart';
+import 'package:loading/indicator/ball_pulse_indicator.dart';
 import 'package:provider/provider.dart';
-import 'package:flare_flutter/flare_actor.dart';
+import 'package:loading/loading.dart';
 
 import 'email_password/email_password_sign_in_page.dart';
 
@@ -59,6 +56,15 @@ class SignInPage extends StatelessWidget {
   }
 
   Widget _buildSignIn(BuildContext context) {
+    if (isLoading) {
+      return Center(
+        child: Loading(
+          color: Colors.pink,
+          indicator: BallPulseIndicator(),
+          size: 100.0,
+        ),
+      );
+    }
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
@@ -88,7 +94,10 @@ class SignInPage extends StatelessWidget {
                 ),
                 Text(
                   "Welcome Back",
-                  style: TextStyle(color: Colors.white, fontSize: 18),
+                  style: TextStyle(
+                      fontFamily: 'Righteous',
+                      color: Colors.white,
+                      fontSize: 18),
                 ),
               ],
             ),
@@ -117,38 +126,41 @@ class SignInPage extends StatelessWidget {
                               blurRadius: 20,
                               offset: Offset(0, 10))
                         ]),
-                    child: Column(
-                      children: <Widget>[
-                        // Image.asset("images/logo.jpg")
-                        /*  Center(
-
-                          child: Container(
-                            // height: ,
-                            padding: EdgeInsets.all(10),
-                            decoration: BoxDecoration(
-                                border: Border(
-                                    bottom: BorderSide(color: Colors.grey[200]))),
-                            child:  Center(
-                              child: Image.asset("images/logo.jpg")
+                  ),
+                  SizedBox(
+                    height: 40,
+                  ),
+                  Container(
+                    height: 50,
+                    margin: EdgeInsets.symmetric(horizontal: 50),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        color: Colors.pink[900]),
+                    child: FlatButton(
+                      key: emailPasswordButtonKey,
+                      onPressed: isLoading
+                          ? Center(
+                              child: Loading(
+                                color: Colors.pink,
+                                indicator: BallPulseIndicator(),
+                                size: 100.0,
+                              ),
                             )
-                              
-                            
-                          ),
-                        ), */
-                      ],
+                          : () => _signInWithEmailAndPassWord(context),
+                      child: Center(
+                        child: Text(
+                          "JOIN NINTY NINE TODAY",
+                          style: TextStyle(
+                              fontFamily: 'Righteous',
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
                     ),
                   ),
                   SizedBox(
                     height: 40,
                   ),
-                  SignInButton(
-                      key: emailPasswordButtonKey,
-                      text: Strings.signInWithEmailPassword,
-                      onPressed: isLoading
-                          ? null
-                          : () => _signInWithEmailAndPassWord(context),
-                      textColor: Colors.white,
-                      color: Colors.pink.shade900),
                 ]),
               ),
             ),

@@ -12,7 +12,12 @@ class _HelpState extends State<Help> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Help'),
+        title: Text(
+          'Help',
+          style: TextStyle(
+            fontFamily: 'Righteous',
+          ),
+        ),
       ),
       body: Container(
           child: ListView(
@@ -25,7 +30,10 @@ class _HelpState extends State<Help> {
               ListTile(
                 title: Text(
                   'Getting Started',
-                  style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      fontFamily: 'Righteous',
+                      fontSize: 14.0,
+                      fontWeight: FontWeight.bold),
                 ),
               ),
               Divider(
@@ -35,6 +43,7 @@ class _HelpState extends State<Help> {
                 title: Text(
                   'Setup and account and explore with us:',
                   style: TextStyle(
+                      fontFamily: 'Righteous',
                       color: Colors.greenAccent.shade700,
                       fontSize: 14.0,
                       fontWeight: FontWeight.bold),
@@ -44,6 +53,7 @@ class _HelpState extends State<Help> {
                     child: Text(
                       'Select beats() blogs/slide',
                       style: TextStyle(
+                          fontFamily: 'Righteous',
                           color: Colors.greenAccent.shade700,
                           fontSize: 14.0,
                           fontWeight: FontWeight.bold),
@@ -65,7 +75,10 @@ class _HelpState extends State<Help> {
               ListTile(
                 title: Text(
                   'Search Content',
-                  style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      fontFamily: 'Righteous',
+                      fontSize: 14.0,
+                      fontWeight: FontWeight.bold),
                 ),
               ),
               Divider(
@@ -75,13 +88,14 @@ class _HelpState extends State<Help> {
                 title: Text(
                   'Handpick-Tutorials:',
                   style: TextStyle(
+                      fontFamily: 'Righteous',
                       color: Colors.greenAccent.shade700,
                       fontSize: 14.0,
                       fontWeight: FontWeight.bold),
                 ),
                 children: <Widget>[
                   Container(
-                    child: Text('Select beats() blogs/slide'),
+                    child: Text('Select blog() blogs/slide'),
                   )
                 ],
               ),
@@ -118,8 +132,8 @@ class _HelpState extends State<Help> {
               ),
             ),
             Divider(
-                endIndent: 100,
-              ),
+              endIndent: 100,
+            ),
             ExpansionTile(
               title: Text(
                 'User Profile:',

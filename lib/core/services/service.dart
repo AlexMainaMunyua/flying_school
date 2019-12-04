@@ -4,8 +4,7 @@ class TopicApi {
   final Firestore _db = Firestore.instance;
   final String path;
   CollectionReference ref;
-  
-  
+
   TopicApi(this.path) {
     ref = _db.collection(path);
   }
@@ -37,36 +36,36 @@ class TopicApi {
 ///////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////
 
-class BlogApi{
+class BlogApi {
   final Firestore _db = Firestore.instance;
   final String path;
   CollectionReference ref;
 
-  BlogApi(this.path){
+  BlogApi(this.path) {
     ref = _db.collection(path);
   }
 
-  Future<QuerySnapshot> getDataCollection(){
+  Future<QuerySnapshot> getDataCollection() {
     return ref.getDocuments();
   }
 
-  Stream<QuerySnapshot> streamDataCollection(){
+  Stream<QuerySnapshot> streamDataCollection() {
     return ref.snapshots();
   }
 
-  Future<DocumentSnapshot> getDocumentById(String id){
+  Future<DocumentSnapshot> getDocumentById(String id) {
     return ref.document(id).get();
   }
 
-  Future<void> removeDocument(String id){
+  Future<void> removeDocument(String id) {
     return ref.document(id).delete();
   }
 
-  Future<DocumentReference> addDocument(Map data){
+  Future<DocumentReference> addDocument(Map data) {
     return ref.add(data);
   }
 
-  Future<void> updateDocument(Map data, String id){
+  Future<void> updateDocument(Map data, String id) {
     return ref.document(id).updateData(data);
   }
 }

@@ -73,8 +73,8 @@ class CustomSearchDelegate extends SearchDelegate<Topics> {
 
         return ListView(
             children: results
-                .map<Widget>((a) => Column(
-                                  children:<Widget>[ ListTile(
+                .map<Widget>((a) => Column(children: <Widget>[
+                      ListTile(
                           onTap: () {
                             close(context, results);
                           },
@@ -86,8 +86,8 @@ class CustomSearchDelegate extends SearchDelegate<Topics> {
                             a.data['topicName'].toString(),
                             style: TextStyle(fontSize: 16),
                           )),
-                          Divider(),
-                                  ]))
+                      Divider(),
+                    ]))
                 .toList());
       },
     );

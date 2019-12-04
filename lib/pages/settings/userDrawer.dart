@@ -18,14 +18,15 @@ class UserDrawer extends StatelessWidget {
   const UserDrawer({this.isLoading});
   final bool isLoading;
 
-  _launcher(String toMailId, String subject, String body)async{
+  _launcher(String toMailId, String subject, String body) async {
     var url = 'malto:$toMailId?subject=$subject=&body =$body';
-    if(await canLaunch(url)){
+    if (await canLaunch(url)) {
       await launch(url);
-    }else{
+    } else {
       throw 'Could not launch $url';
     }
   }
+
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<User>(context);
@@ -35,8 +36,20 @@ class UserDrawer extends StatelessWidget {
         child: Column(
           children: <Widget>[
             UserAccountsDrawerHeader(
-              accountName: Text("displayName"),
-              accountEmail: Text('example.gmail.com'),
+              accountName: Text(
+                "displayName",
+                style: TextStyle(
+                    fontFamily: 'Righteous',
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold),
+              ),
+              accountEmail: Text(
+                'example.gmail.com',
+                style: TextStyle(
+                    fontFamily: 'Righteous',
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold),
+              ),
               currentAccountPicture: Avatar(
                 photoUrl: user.photoUrl,
                 radius: 50,
@@ -84,7 +97,7 @@ class UserDrawer extends StatelessWidget {
                 Icons.home,
                 color: Colors.black,
               ),
-              title: Text('Home'),
+              title: Text('Home',style: TextStyle(fontFamily: 'Righteous',),),
               onTap: () {
                 Navigator.of(context).pop();
               }),
@@ -93,16 +106,17 @@ class UserDrawer extends StatelessWidget {
                 Icons.edit,
                 color: Colors.black,
               ),
-              title: Text('New Story'),
+              title: Text('New Story',style: TextStyle(fontFamily: 'Righteous',),),
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> NewStories()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => NewStories()));
               }),
           ListTile(
               trailing: Icon(
                 Icons.rss_feed,
                 color: Colors.black,
               ),
-              title: Text('My Stories'),
+              title: Text('My Stories',style: TextStyle(fontFamily: 'Righteous',),),
               onTap: () {}),
           Divider(),
           ListTile(
@@ -110,13 +124,14 @@ class UserDrawer extends StatelessWidget {
                 'About Ninty Nine School',
                 textAlign: TextAlign.center,
                 style: TextStyle(
+                  fontFamily: 'Righteous',
                     color: Colors.greenAccent.shade700,
                     fontSize: 14.0,
                     fontWeight: FontWeight.bold),
               ),
               onTap: () {
-                Navigator.push(context, 
-                 MaterialPageRoute (builder: (context)=> AboutNintyNite()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => AboutNintyNite()));
               }),
           Divider(),
           ListTile(
@@ -124,31 +139,37 @@ class UserDrawer extends StatelessWidget {
                 Icons.help_outline,
                 color: Colors.purple,
               ),
-              title: Text('Help'),
+              title: Text('Help',style: TextStyle(fontFamily: 'Righteous',),),
               onTap: () {
-                Navigator.push(context, 
-                MaterialPageRoute(builder: (context)=> Help()));
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => Help()));
               }),
           ListTile(
               leading: Icon(
                 Icons.rate_review,
                 color: Colors.yellow,
               ),
-              title: Text('Rate the App'),
+              title: Text('Rate the App',style: TextStyle(fontFamily: 'Righteous',),),
               onTap: () {}),
           ListTile(
               leading: Icon(
                 Icons.share,
                 color: Colors.black,
               ),
-              title: Text('Share'),
-              onTap: ()=> Share.share('check out my website https://example.com', subject: 'Look whassssst I made!')),          ListTile(
+              title: Text('Share',style: TextStyle(fontFamily: 'Righteous',),),
+              onTap: () => Share.share(
+                  'check out my website https://example.com',
+                  subject: 'Look whassssst I made!')),
+          ListTile(
               leading: Icon(
                 Icons.feedback,
                 color: Colors.indigo,
               ),
-              title: Text('App Support Feedback'),
-              onTap: () {_launcher('alexmaina79@gmail.com', 'Android App Support & FeedBack', 'Hello support Team');}),
+              title: Text('App Support Feedback',style: TextStyle(fontFamily: 'Righteous',),),
+              onTap: () {
+                _launcher('alexmaina79@gmail.com',
+                    'Android App Support & FeedBack', 'Hello support Team');
+              }),
           Divider(),
           SizedBox(
             height: 5,
@@ -166,7 +187,7 @@ class UserDrawer extends StatelessWidget {
                   SizedBox(
                     width: 5,
                   ),
-                  Text('Settings')
+                  Text('Settings',style: TextStyle(fontFamily: 'Righteous',),)
                 ]),
                 onPressed: () {
                   Navigator.push(context,
@@ -182,7 +203,7 @@ class UserDrawer extends StatelessWidget {
                   SizedBox(
                     width: 5,
                   ),
-                  Text('Sign Out')
+                  Text('Sign Out',style: TextStyle(fontFamily: 'Righteous',),)
                 ]),
                 onPressed: () {
                   _confirmSignOut(context);

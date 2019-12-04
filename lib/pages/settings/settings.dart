@@ -11,12 +11,16 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
-
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Settings')),
+      appBar: AppBar(
+          title: Text(
+        'Settings',
+        style: TextStyle(
+          fontFamily: 'Righteous',
+        ),
+      )),
       body: Container(
         child: ListView(
           children: <Widget>[
@@ -31,65 +35,130 @@ class _SettingsState extends State<Settings> {
                 children: <Widget>[
                   Text(
                     'PERSONAL DETAILS',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                    style: TextStyle(
+                        fontFamily: 'Righteous',
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15),
                   ),
                   IconButton(
                     icon: Icon(Icons.edit),
                     onPressed: () {
-                      Navigator.push(context, 
-                      MaterialPageRoute (builder: (context)=> PersonalDetailsForm()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => PersonalDetailsForm()));
                     },
                   )
                 ],
               ),
             ),
             ListTile(
-              leading: Text("USERNAME"),
+              leading: Text(
+                "USERNAME",
+                style: TextStyle(
+                  fontFamily: 'Righteous',
+                ),
+              ),
               trailing: Text(""),
             ),
             Divider(),
             ListTile(
-              leading: Text("PASSWORD"),
+              leading: Text(
+                "PASSWORD",
+                style: TextStyle(
+                  fontFamily: 'Righteous',
+                ),
+              ),
               trailing: Text("*********"),
             ),
             Divider(),
             ListTile(
-              leading: Text("FIRST NAME"),
+              leading: Text(
+                "FIRST NAME",
+                style: TextStyle(
+                  fontFamily: 'Righteous',
+                ),
+              ),
               trailing: Text(""),
             ),
             Divider(),
             ListTile(
-              leading: Text("LAST NAME"),
+              leading: Text(
+                "LAST NAME",
+                style: TextStyle(
+                  fontFamily: 'Righteous',
+                ),
+              ),
               trailing: Text(""),
             ),
             Divider(),
             ListTile(
-              leading: Text("ACCOUNT TYPE"),
-              trailing: Text("PERSONAL"),
+              leading: Text(
+                "ACCOUNT TYPE",
+                style: TextStyle(
+                  fontFamily: 'Righteous',
+                ),
+              ),
+              trailing: Text(
+                "PERSONAL",
+                style: TextStyle(
+                  fontFamily: 'Righteous',
+                ),
+              ),
             ),
             Divider(),
             ListTile(
-              leading: Text("PLAN TYPE"),
-              trailing: Text("FREE"),
+              leading: Text(
+                "PLAN TYPE",
+                style: TextStyle(
+                  fontFamily: 'Righteous',
+                ),
+              ),
+              trailing: Text(
+                "FREE",
+                style: TextStyle(
+                  fontFamily: 'Righteous',
+                ),
+              ),
             ),
             Divider(),
             ListTile(
-              leading: Text("EMAIL"),
+              leading: Text(
+                "EMAIL",
+                style: TextStyle(
+                  fontFamily: 'Righteous',
+                ),
+              ),
               trailing: Text(""),
             ),
             Divider(),
             ListTile(
-              leading: Text("PHONE NUMBER"),
+              leading: Text(
+                "PHONE NUMBER",
+                style: TextStyle(
+                  fontFamily: 'Righteous',
+                ),
+              ),
               trailing: Text(""),
             ),
             Divider(),
             ListTile(
-              leading: Text("GENDER"),
+              leading: Text(
+                "GENDER",
+                style: TextStyle(
+                  fontFamily: 'Righteous',
+                ),
+              ),
               trailing: Text(""),
             ),
             Divider(),
             ListTile(
-              leading: Text("DATE OF BIRTH"),
+              leading: Text(
+                "DATE OF BIRTH",
+                style: TextStyle(
+                  fontFamily: 'Righteous',
+                ),
+              ),
               trailing: Text(""),
             ),
             /////////////////////////////////////////////////////////////////

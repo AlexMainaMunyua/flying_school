@@ -1,9 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flying_school/core/services/authentication.dart';
 import 'package:flying_school/core/services/email_secure_store.dart';
 import 'package:flying_school/core/services/firebase_email_link_handler.dart';
 import 'package:flying_school/core/view/CrudModel.dart';
+
 
 import 'package:provider/provider.dart';
 
@@ -17,7 +19,7 @@ import 'pages/sign_in/email-link_error_presenter.dart';
 void main() {
   Provider.debugCheckInvalidValueType= null;
   setupLocator();
-  runApp(MyApp());
+  runApp( MyApp());
 }
 
 Widget getErrorWidget(BuildContext context, FlutterErrorDetails error) {
