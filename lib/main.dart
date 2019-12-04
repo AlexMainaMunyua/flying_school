@@ -17,7 +17,7 @@ import 'pages/authentication/auth_widget.dart';
 import 'pages/sign_in/email-link_error_presenter.dart';
 
 void main() {
-  Provider.debugCheckInvalidValueType= null;
+  // Provider.debugCheckInvalidValueType= null;
   setupLocator();
   runApp( MyApp());
 }

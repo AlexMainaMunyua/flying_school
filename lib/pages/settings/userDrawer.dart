@@ -1,9 +1,12 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:flying_school/common_widgets/avatar.dart';
 import 'package:flying_school/common_widgets/platform_alert_dialog.dart';
 import 'package:flying_school/common_widgets/platform_exception_alert_dialog.dart';
 import 'package:flying_school/constants/string.dart';
 import 'package:flying_school/core/services/authentication.dart';
+import 'package:flying_school/pages/blog/mystories.dart';
 import 'package:flying_school/pages/blog/newstories.dart';
 import 'package:flying_school/pages/settings/aboutnintynine.dart';
 import 'package:flying_school/pages/settings/help.dart';
@@ -109,7 +112,7 @@ class UserDrawer extends StatelessWidget {
               title: Text('New Story',style: TextStyle(fontFamily: 'Righteous',),),
               onTap: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => NewStories()));
+                    MaterialPageRoute(builder: (context) => EditorPage()));
               }),
           ListTile(
               trailing: Icon(
@@ -117,7 +120,11 @@ class UserDrawer extends StatelessWidget {
                 color: Colors.black,
               ),
               title: Text('My Stories',style: TextStyle(fontFamily: 'Righteous',),),
-              onTap: () {}),
+              onTap: () {
+                Navigator.push(context,
+                MaterialPageRoute(builder: (context)=> MyStorie())              
+                );
+              }),
           Divider(),
           ListTile(
               title: Text(

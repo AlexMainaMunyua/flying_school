@@ -14,26 +14,10 @@ class BlogPage extends StatefulWidget {
 
 class _BlogPageState extends State<BlogPage> {
   List<Blog> blog;
-  final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
-      GlobalKey<RefreshIndicatorState>();
-
-  Future<Null> _refresh() {
-    return null;
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance
-        .addPostFrameCallback((_) => _refreshIndicatorKey.currentState.show());
-  }
 
   @override
   Widget build(BuildContext context) {
     final blogProvider = Provider.of<BlogCRUDModel>(context);
-    // return RefreshIndicator(
-    // key: _refreshIndicatorKey,
-    // onRefresh: _refresh,
     return StreamBuilder<QuerySnapshot>(
       stream: blogProvider.fetchBlogAsStream(),
       builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {

@@ -56,16 +56,7 @@ class SignInPage extends StatelessWidget {
   }
 
   Widget _buildSignIn(BuildContext context) {
-    if (isLoading) {
-      return Center(
-        child: Loading(
-          color: Colors.pink,
-          indicator: BallPulseIndicator(),
-          size: 100.0,
-        ),
-      );
-    }
-    return Container(
+        return Container(
       width: double.infinity,
       decoration: BoxDecoration(
           gradient: LinearGradient(

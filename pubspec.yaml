@@ -19,24 +19,28 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  provider:
-  get_it:
-  cloud_firestore:
-  firebase_auth:
-  firebase_database:
-  flutter_secure_storage:
-  firebase_dynamic_links:
-  rxdart:
-  url_launcher:
-  intl:
-  simple_animations:
+  provider: ^3.2.0
+  get_it: ^3.0.3
+  cloud_firestore: ^0.12.11
+  firebase_auth: ^0.15.0+1
+  firebase_database: ^3.1.0
+  flutter_secure_storage: ^3.3.1+1
+  firebase_dynamic_links: ^0.5.0+8
+  rxdart: ^0.22.6
+  url_launcher: ^5.2.7
+  intl: ^0.16.0
+  webview_flutter: ^0.3.17
   share: ^0.6.3+3
-  webview_flutter:
-  flare_flutter:
-  loading:
   flutter_launcher_icons:
   flutter_spinkit: "^4.1.0"
+  loading: ^1.0.2
   zefyr:
+    git:
+      url: git://github.com/memspace/zefyr.git
+      ref: fix-text-input-connection-closed
+      path: packages/zefyr
+  
+
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

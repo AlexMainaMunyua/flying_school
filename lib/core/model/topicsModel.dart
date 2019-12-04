@@ -1,3 +1,5 @@
+import 'package:zefyr/zefyr.dart';
+
 class Topics {
   final String topicName;
   final String id;
@@ -58,4 +60,12 @@ class Blog {
       'blogImage': blogImage,
     };
   }
+}
+
+class Note {
+  final String title;
+  final NotusDocument document;
+
+  Note({this.title, this.document});
+
 }
