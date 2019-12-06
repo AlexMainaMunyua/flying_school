@@ -17,7 +17,7 @@ import 'pages/authentication/auth_widget.dart';
 import 'pages/sign_in/email-link_error_presenter.dart';
 
 void main() {
-  // Provider.debugCheckInvalidValueType= null;
+  Provider.debugCheckInvalidValueType= null;
   setupLocator();
   runApp( MyApp());
 }
@@ -39,20 +39,20 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: <SingleChildCloneableWidget>[
-        ChangeNotifierProvider(builder: (_)=> locator<CRUDModel>()),
-        ChangeNotifierProvider(builder: (_)=> locator<BlogCRUDModel>(),),
+        ChangeNotifierProvider(create: (_)=> locator<CRUDModel>()),
+        ChangeNotifierProvider(create: (_)=> locator<BlogCRUDModel>(),),
         Provider<AuthService>(
-          builder: (_)=>AuthServiceAdapter(
+          create: (_)=>AuthServiceAdapter(
             initialAuthServiceType: initialAuthServiceType,
           ),
           dispose: (_, AuthService authService)=> authService.dispose(),
 
         ),
         Provider<EmailSecureStore>(
-          builder: (_)=> EmailSecureStore(flutterSecureStorage: FlutterSecureStorage()),
+          create: (_)=> EmailSecureStore(flutterSecureStorage: FlutterSecureStorage()),
         ),
         ProxyProvider2<AuthService, EmailSecureStore, FirebaseEmailLinkHander>(
-          builder: ( _,AuthService authService, EmailSecureStore storage, __) =>
+          update: ( _,AuthService authService, EmailSecureStore storage, __) =>
               FirebaseEmailLinkHander.createAndConfigure(
                 auth: authService,
                 userCredentialsStorage: storage,

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flying_school/core/model/topicsModel.dart';
 import 'package:flying_school/core/view/CrudModel.dart';
 import 'package:intl/intl.dart';
+import 'package:loading/indicator/ball_pulse_indicator.dart';
+import 'package:loading/loading.dart';
 import 'package:provider/provider.dart';
 
 class BlogPage extends StatefulWidget {
@@ -12,8 +14,19 @@ class BlogPage extends StatefulWidget {
   _BlogPageState createState() => _BlogPageState();
 }
 
-class _BlogPageState extends State<BlogPage> {
+class _BlogPageState extends State<BlogPage>
+    with SingleTickerProviderStateMixin {
+  AnimationController _animationController;
   List<Blog> blog;
+
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+        vsync: this, duration: Duration(milliseconds: 6000));
+
+    _animationController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +44,14 @@ class _BlogPageState extends State<BlogPage> {
           );
         } else {
           return Center(
-            child: const CircularProgressIndicator(),
+            child: CircularProgressIndicator(
+              backgroundColor: Colors.pink,
+            )
+            /* child: Loading(
+              color: Colors.pink,
+              indicator: BallPulseIndicator(),
+              size: 100.0,
+            ), */
           );
         }
       },
@@ -50,9 +70,8 @@ class BlogBuilder extends StatelessWidget {
     String formatedDate = DateFormat('d MMM').format(now);
     return GestureDetector(
       onTap: () {
-        /* Navigator.push(context,
-          MaterialPageRoute (builder: (_)=> BlogDetails(blog:blog))
-        ); */
+        Navigator.push(context,
+            MaterialPageRoute(builder: (_) => BlogDetails(blog: blog)));
         print('tapped');
       },
       child: Container(
@@ -128,6 +147,26 @@ class BlogBuilder extends StatelessWidget {
             color: Colors.black45,
           ),
         ]),
+      ),
+    );
+  }
+}
+
+class BlogDetails extends StatefulWidget {
+  BlogDetails({Key key, this.blog}) : super(key: key);
+
+  final Blog blog;
+
+  @override
+  _BlogDetailsState createState() => _BlogDetailsState();
+}
+
+class _BlogDetailsState extends State<BlogDetails> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('${widget.blog.blogTopicName}'),
       ),
     );
   }

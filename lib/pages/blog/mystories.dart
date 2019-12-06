@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flying_school/core/model/topicsModel.dart';
-import 'package:flying_school/pages/blog/newstories.dart';
+import 'package:flying_school/pages/blog/editorpage.dart';
+
 
 class MyStorie extends StatefulWidget {
   MyStorie({Key key}) : super(key: key);
@@ -31,19 +32,20 @@ class _MyStorieState extends State<MyStorie> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'MyNotes',
-          style: TextStyle(color: Colors.white),
+          'My Blog',
+          style: TextStyle(color: Colors.white, fontFamily: 'Righteous'),
         ),
-        centerTitle: true,
+       
       ),
       body: Container(
         child: _notesList.length == 0
             ? Center(
-                child: Text("Tap on + button to add new notes"),
+                child: Text("Add New Blog", style: TextStyle(fontFamily: 'Righteous'),),
               )
             : _getNotesList(),
       ),
-      floatingActionButton: FloatingActionButton(
+       floatingActionButton: FloatingActionButton(
+         backgroundColor: Colors.pink[900],
         onPressed: () {
           Navigator.push(
             context,
@@ -56,7 +58,7 @@ class _MyStorieState extends State<MyStorie> {
           Icons.add,
           color: Colors.white,
         ),
-      ),
+      ), 
     );
   }
 

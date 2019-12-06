@@ -4,7 +4,6 @@ import 'package:flying_school/pages/sign_in/sign_in_manager.dart';
 import 'package:loading/indicator/ball_pulse_indicator.dart';
 import 'package:provider/provider.dart';
 import 'package:loading/loading.dart';
-
 import 'email_password/email_password_sign_in_page.dart';
 
 class SignInPageBuilder extends StatelessWidget {
@@ -12,11 +11,11 @@ class SignInPageBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     final AuthService auth = Provider.of<AuthService>(context);
     return ChangeNotifierProvider<ValueNotifier<bool>>(
-      builder: (_) => ValueNotifier<bool>(false),
+      create: (_) => ValueNotifier<bool>(false),
       child: Consumer<ValueNotifier<bool>>(
         builder: (_, ValueNotifier<bool> isLoading, __) =>
             Provider<SignInManager>(
-                builder: (_) => SignInManager(auth: auth, isLoading: isLoading),
+                create: (_) => SignInManager(auth: auth, isLoading: isLoading),
                 child: Consumer<SignInManager>(
                   builder: (_, SignInManager manager, __) => SignInPage._(
                       isLoading: isLoading.value,
@@ -131,11 +130,12 @@ class SignInPage extends StatelessWidget {
                       key: emailPasswordButtonKey,
                       onPressed: isLoading
                           ? Center(
-                              child: Loading(
+                            child: CircularProgressIndicator(),
+                             /*  child: Loading(
                                 color: Colors.pink,
                                 indicator: BallPulseIndicator(),
                                 size: 100.0,
-                              ),
+                              ), */
                             )
                           : () => _signInWithEmailAndPassWord(context),
                       child: Center(

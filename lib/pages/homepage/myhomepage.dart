@@ -16,8 +16,21 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<MyHomePage>
+    with SingleTickerProviderStateMixin {
+  AnimationController _animationController;
+
   List<Topics> topics;
+
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+        vsync: this, duration: Duration(milliseconds: 6000));
+
+    _animationController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final topicProvider = Provider.of<CRUDModel>(context);
@@ -34,11 +47,14 @@ class _MyHomePageState extends State<MyHomePage> {
           );
         } else {
           return Center(
-            child: Loading(
+               child: CircularProgressIndicator(
+                 backgroundColor:Colors.pink
+               ),
+            /* child: Loading(
               color: Colors.pink,
               indicator: BallPulseIndicator(),
               size: 100.0,
-            ),
+            ), */
           );
         }
       },

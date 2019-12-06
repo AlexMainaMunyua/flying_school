@@ -7,7 +7,6 @@ import 'package:flying_school/common_widgets/platform_exception_alert_dialog.dar
 import 'package:flying_school/constants/string.dart';
 import 'package:flying_school/core/services/authentication.dart';
 import 'package:flying_school/pages/blog/mystories.dart';
-import 'package:flying_school/pages/blog/newstories.dart';
 import 'package:flying_school/pages/settings/aboutnintynine.dart';
 import 'package:flying_school/pages/settings/help.dart';
 import 'package:provider/provider.dart';
@@ -20,15 +19,19 @@ import 'settings.dart';
 class UserDrawer extends StatelessWidget {
   const UserDrawer({this.isLoading});
   final bool isLoading;
+  
+
+ 
 
   _launcher(String toMailId, String subject, String body) async {
-    var url = 'malto:$toMailId?subject=$subject=&body =$body';
+    String url = 'mailto:$toMailId?subject=$subject=&body=$body';
     if (await canLaunch(url)) {
       await launch(url);
     } else {
       throw 'Could not launch $url';
     }
   }
+  // mailto:smith@example.org?subject=News&body=New%20plugin
 
   @override
   Widget build(BuildContext context) {
@@ -104,7 +107,7 @@ class UserDrawer extends StatelessWidget {
               onTap: () {
                 Navigator.of(context).pop();
               }),
-          ListTile(
+         /*  ListTile(
               trailing: Icon(
                 Icons.edit,
                 color: Colors.black,
@@ -113,13 +116,13 @@ class UserDrawer extends StatelessWidget {
               onTap: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => EditorPage()));
-              }),
+              }), */
           ListTile(
               trailing: Icon(
-                Icons.rss_feed,
+                Icons.drafts,
                 color: Colors.black,
               ),
-              title: Text('My Stories',style: TextStyle(fontFamily: 'Righteous',),),
+              title: Text('My Draft',style: TextStyle(fontFamily: 'Righteous',),),
               onTap: () {
                 Navigator.push(context,
                 MaterialPageRoute(builder: (context)=> MyStorie())              
@@ -151,13 +154,13 @@ class UserDrawer extends StatelessWidget {
                 Navigator.push(
                     context, MaterialPageRoute(builder: (context) => Help()));
               }),
-          ListTile(
+         /*  ListTile(
               leading: Icon(
                 Icons.rate_review,
                 color: Colors.yellow,
               ),
               title: Text('Rate the App',style: TextStyle(fontFamily: 'Righteous',),),
-              onTap: () {}),
+              onTap: () {}), */
           ListTile(
               leading: Icon(
                 Icons.share,

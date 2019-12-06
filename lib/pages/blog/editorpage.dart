@@ -95,8 +95,8 @@ class _EditorPageState extends State<EditorPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Create New Notes",
-          style: TextStyle(color: Colors.white),
+          "Create New Blog",
+          style: TextStyle(fontFamily: 'Righteous',color: Colors.white),
         ),
         leading: IconButton(
           icon: Icon(Icons.chevron_left),
