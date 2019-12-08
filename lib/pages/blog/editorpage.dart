@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:zefyr/zefyr.dart';
 import 'package:flying_school/core/model/topicsModel.dart';
 
-
 class EditorPage extends StatefulWidget {
   final Function add;
   final Function update;
@@ -19,6 +18,7 @@ class _EditorPageState extends State<EditorPage> {
   ZefyrController _editorController;
 
   TextEditingController _titleController;
+  TextEditingController _descriptionController;
 
   /// Zefyr editor like any other input field requires a focus node.
   FocusNode _focusNode;
@@ -31,6 +31,7 @@ class _EditorPageState extends State<EditorPage> {
 
     _document = _loadDocument();
     _titleController = _loadTitle();
+    _descriptionController = _loadDescription();
     _editorController = ZefyrController(_document);
     _focusNode = FocusNode();
   }
@@ -45,6 +46,13 @@ class _EditorPageState extends State<EditorPage> {
     return widget.note != null
         ? TextEditingController(text: widget.note.title)
         : TextEditingController();
+  }
+
+  TextEditingController _loadDescription(){
+    //if in edit mode the load the provided description:
+    return widget.note != null
+    ? TextEditingController(text: widget.note.description)
+    : TextEditingController();
   }
 
   @override
@@ -70,7 +78,16 @@ class _EditorPageState extends State<EditorPage> {
     final titleField = TextField(
       controller: _titleController,
       decoration: InputDecoration(
-        hintText: 'Enter Title Here...',
+        hintText: 'Enter Blog Title Here...',
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(5.0),
+        ),
+      ),
+    );
+    final descriptionField = TextField(
+      controller: _descriptionController,
+      decoration: InputDecoration(
+        hintText: 'Enter Blog Description Here...',
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(5.0),
         ),
@@ -86,6 +103,10 @@ class _EditorPageState extends State<EditorPage> {
             SizedBox(
               height: 10,
             ),
+            descriptionField,
+            SizedBox(
+              height: 10,
+            ),
             editor
           ],
         ),
@@ -96,7 +117,7 @@ class _EditorPageState extends State<EditorPage> {
       appBar: AppBar(
         title: Text(
           "Create New Blog",
-          style: TextStyle(fontFamily: 'Righteous',color: Colors.white),
+          style: TextStyle(fontFamily: 'Righteous', color: Colors.white),
         ),
         leading: IconButton(
           icon: Icon(Icons.chevron_left),
@@ -125,7 +146,9 @@ class _EditorPageState extends State<EditorPage> {
 
     final String title = _titleController.text;
 
-    final Note note = Note(title: title, document: doc);
+    final String description = _descriptionController.text;
+
+    final Note note = Note(title: title,description: description, document: doc);
 
     // Check if we need to add new or edit old one
     if (widget.noteIndex == null && widget.note == null) {
@@ -133,6 +156,7 @@ class _EditorPageState extends State<EditorPage> {
     } else {
       widget.update(widget.noteIndex, note);
     }
+  
 
     Navigator.pop(context);
   }

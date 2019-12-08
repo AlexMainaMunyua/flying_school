@@ -64,8 +64,9 @@ class Blog {
 
 class Note {
   final String title;
+  final String description;
   final NotusDocument document;
 
-  Note({this.title, this.document});
+  Note({this.title, this.document, this.description});
 
 }
