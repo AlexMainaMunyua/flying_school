@@ -1,6 +1,16 @@
+import 'dart:async';
+import 'dart:convert';
+
+import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flying_school/core/view/CrudModel.dart';
+import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
+import 'package:provider/provider.dart';
 import 'package:zefyr/zefyr.dart';
 import 'package:flying_school/core/model/topicsModel.dart';
+import 'package:flutter/services.dart';
 
 class EditorPage extends StatefulWidget {
   final Function add;
@@ -48,15 +58,16 @@ class _EditorPageState extends State<EditorPage> {
         : TextEditingController();
   }
 
-  TextEditingController _loadDescription(){
+  TextEditingController _loadDescription() {
     //if in edit mode the load the provided description:
     return widget.note != null
-    ? TextEditingController(text: widget.note.description)
-    : TextEditingController();
+        ? TextEditingController(text: widget.note.description)
+        : TextEditingController();
   }
 
   @override
   Widget build(BuildContext context) {
+    var noteProvider = Provider.of<NoteCRUDModel>(context);
     double screenHeight = MediaQuery.of(context).size.height;
 
     // To make the editor height responsive
@@ -128,7 +139,35 @@ class _EditorPageState extends State<EditorPage> {
           IconButton(
             icon: Icon(Icons.save),
             color: Colors.white,
-            onPressed: () => _saveDocument(context),
+            onPressed: () {
+              final NotusDocument doc = _editorController.document;
+
+              final String title = _titleController.text;
+
+              final String description = _descriptionController.text;
+
+              final Note note =
+                  Note(title: title, description: description, document: doc);
+
+              final contents = jsonEncode(note);
+
+              // var db = FirebaseDatabase.instance;
+              noteProvider.addNote(Note(title: title,description: description, document: doc));
+
+            /*   if (widget.noteIndex == null && widget.note == null) {
+                db.reference().child('Note').push().set(contents).then((_) {
+                  Scaffold.of(context).showSnackBar(SnackBar(
+                    content: Text('Saved'),
+                  ));                 
+                }                
+                );
+                widget.add(note);
+              } else {
+                widget.update(widget.noteIndex, note);
+              } */
+              Navigator.of(context).pop();
+            },
+            // onPressed: () => _saveDocument(context),
           ),
           IconButton(
             icon: Icon(Icons.clear_all),
@@ -141,22 +180,45 @@ class _EditorPageState extends State<EditorPage> {
     );
   }
 
-  void _saveDocument(BuildContext context) {
+  void _saveDocument(BuildContext context) async {
     final NotusDocument doc = _editorController.document;
 
     final String title = _titleController.text;
 
     final String description = _descriptionController.text;
 
-    final Note note = Note(title: title,description: description, document: doc);
+    final Note note =
+        Note(title: title, description: description, document: doc);
 
-    // Check if we need to add new or edit old one
+    final contents = jsonEncode(note);
+
+    var db = FirebaseDatabase.instance;
+
     if (widget.noteIndex == null && widget.note == null) {
-      widget.add(note);
+      db.reference().child('Note').push().set(contents).then((_) {
+        Scaffold.of(context).showSnackBar(SnackBar(
+          content: Text('Saved'),
+        ));
+      });
     } else {
       widget.update(widget.noteIndex, note);
     }
-  
+
+    /*    var url = 'https://loan-app-6d0b2.firebaseio.com/Note.json';
+
+    var httpClient = Client();
+    var response = await httpClient.post(url, body: contents);
+
+    print('response' + response.body); */
+
+    /*  // Check if we need to add new or edit old one
+    if (widget.noteIndex == null && widget.note == null) {
+       await noteProvider
+        .addNote(Note(title: title, description: description, document: doc));
+      // widget.add(note);
+    } else {
+      widget.update(widget.noteIndex, note);
+    } */
 
     Navigator.pop(context);
   }

@@ -1,3 +1,5 @@
+
+
 import 'package:zefyr/zefyr.dart';
 
 class Topics {
@@ -63,10 +65,24 @@ class Blog {
 }
 
 class Note {
+  final String id;
   final String title;
   final String description;
   final NotusDocument document;
 
-  Note({this.title, this.document, this.description});
+  Note({this.id, this.title, this.document, this.description});
 
+  Note.fromMap(Map snapshot, String id)
+      : id = id ?? '',
+        title = snapshot['title'] ?? '',
+        description = snapshot['description'] ?? '',
+        document = snapshot['description'] ?? '';
+
+  toJson() {
+    return {
+      'title': title,
+      'description': description,
+      'document': document,
+    };
+  }
 }

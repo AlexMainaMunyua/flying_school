@@ -82,3 +82,44 @@ class BlogCRUDModel extends ChangeNotifier {
     return result;
   }
 }
+
+///////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
+///
+class NoteCRUDModel extends ChangeNotifier {
+  NoteApi _api = locator<NoteApi>();
+
+  List<Note> notes;
+
+  Future<List<Note>> fetchNotes() async {
+    var results = await _api.getDataCollection();
+    notes = results.documents
+        .map((doc) => Note.fromMap(doc.data, doc.documentID))
+        .toList();
+    return notes;
+  }
+
+  Stream<QuerySnapshot> fetchNoteAsStream() {
+    return _api.streamDataCollection();
+  }
+
+  Future<Note> getNoteById(String id) async {
+    var doc = await _api.getDocumentById(id);
+    return Note.fromMap(doc.data, doc.documentID);
+  }
+
+  Future removeNote(String id) async {
+    await _api.removeDocument(id);
+    return;
+  }
+
+  Future updateNote(Note data, String id) async {
+    await _api.updateDocument(data.toJson(), id);
+    return;
+  }
+
+  Future addNote(Note data) async {
+    var result = await _api.addDocument(data.toJson());
+    return result;
+  }
+}

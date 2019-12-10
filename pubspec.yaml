@@ -31,6 +31,7 @@ dependencies:
   intl:
   webview_flutter:
   share:
+  http:
   flutter_launcher_icons:
   flutter_spinkit: "^4.1.0"
   loading: ^1.0.2

@@ -41,6 +41,8 @@ class MyApp extends StatelessWidget {
       providers: <SingleChildCloneableWidget>[
         ChangeNotifierProvider(create: (_)=> locator<CRUDModel>()),
         ChangeNotifierProvider(create: (_)=> locator<BlogCRUDModel>(),),
+        ChangeNotifierProvider(create: (_)=> locator<NoteCRUDModel>(),),
+
         Provider<AuthService>(
           create: (_)=>AuthServiceAdapter(
             initialAuthServiceType: initialAuthServiceType,

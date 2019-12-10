@@ -10,4 +10,9 @@ void setupLocator() {
 
   locator.registerLazySingleton(()=> BlogApi('Blog'));
   locator.registerLazySingleton(()=> BlogCRUDModel());
+
+  locator.registerLazySingleton(()=> NoteApi('Note'));
+  locator.registerLazySingleton(()=> NoteCRUDModel());
+
+
 }
