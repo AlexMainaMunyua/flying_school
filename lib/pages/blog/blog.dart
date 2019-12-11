@@ -1,9 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flying_school/core/model/topicsModel.dart';
-import 'package:flying_school/core/view/CrudModel.dart';
 import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
 
 import 'editorpage.dart';
 

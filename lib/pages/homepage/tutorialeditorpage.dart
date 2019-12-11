@@ -8,19 +8,19 @@ import 'package:provider/provider.dart';
 import 'package:zefyr/zefyr.dart';
 import 'package:flying_school/core/model/topicsModel.dart';
 
-class EditorPage extends StatefulWidget {
+class TutorialEditorPage extends StatefulWidget {
   final Function add;
   final Function update;
   final int noteIndex;
   final Note note;
 
-  EditorPage({this.add, this.update, this.noteIndex, this.note});
+  TutorialEditorPage({this.add, this.update, this.noteIndex, this.note});
 
   @override
-  _EditorPageState createState() => _EditorPageState();
+  _TutorialEditorPageState createState() => _TutorialEditorPageState();
 }
 
-class _EditorPageState extends State<EditorPage> {
+class _TutorialEditorPageState extends State<TutorialEditorPage> {
   ZefyrController _editorController;
 
   TextEditingController _titleController;

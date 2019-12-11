@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-{"_info":"// This is a generated file; do not edit or check into version control.","dependencyGraph":[{"name":"cloud_firestore","dependencies":["firebase_core"]},{"name":"firebase_auth","dependencies":["firebase_core"]},{"name":"firebase_core","dependencies":[]},{"name":"firebase_database","dependencies":["firebase_core"]},{"name":"firebase_dynamic_links","dependencies":[]},{"name":"flutter_secure_storage","dependencies":[]},{"name":"webview_flutter","dependencies":[]}]}
-=======
 {"_info":"// This is a generated file; do not edit or check into version control.","dependencyGraph":[{"name":"cloud_firestore","dependencies":["firebase_core"]},{"name":"firebase_auth","dependencies":["firebase_core"]},{"name":"firebase_core","dependencies":[]},{"name":"firebase_database","dependencies":["firebase_core"]},{"name":"firebase_dynamic_links","dependencies":[]},{"name":"flutter_secure_storage","dependencies":[]},{"name":"share","dependencies":[]},{"name":"url_launcher","dependencies":[]},{"name":"webview_flutter","dependencies":[]}]}
->>>>>>> bb8cf2b16dc5739ed66c9cfabdc6e62d0406311e
