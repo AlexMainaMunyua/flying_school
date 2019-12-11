@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
           builder: (_)=> EmailSecureStore(flutterSecureStorage: FlutterSecureStorage()),
         ),
         ProxyProvider2<AuthService, EmailSecureStore, FirebaseEmailLinkHander>(
-          builder: ( _,AuthService authService, EmailSecureStore storage, __) =>
+           builder: ( _,AuthService authService, EmailSecureStore storage, __) =>
               FirebaseEmailLinkHander.createAndConfigure(
                 auth: authService,
                 userCredentialsStorage: storage,
