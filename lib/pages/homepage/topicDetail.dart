@@ -13,8 +13,8 @@ class TopicDetails extends StatefulWidget {
 }
 
 class _TopicDetailsState extends State<TopicDetails> {
-Completer<WebViewController> _controller = Completer<WebViewController>();
- final controller = PageController();
+  Completer<WebViewController> _controller = Completer<WebViewController>();
+  final controller = PageController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,15 +30,13 @@ Completer<WebViewController> _controller = Completer<WebViewController>();
             WebView(
               initialUrl: '${widget.topic.content}',
               javascriptMode: JavascriptMode.unrestricted,
-              onWebViewCreated: (WebViewController controller){
+              onWebViewCreated: (WebViewController controller) {
                 _controller.complete(controller);
               },
             )
           ],
-
         ),
       ),
-      
     );
   }
 }

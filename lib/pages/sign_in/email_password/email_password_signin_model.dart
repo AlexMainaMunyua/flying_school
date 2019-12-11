@@ -1,16 +1,16 @@
 import 'package:flutter/foundation.dart';
 import 'package:flying_school/constants/string.dart';
 import 'package:flying_school/core/services/authentication.dart';
-import 'package:flying_school/pages/sign_in/validator.dart';
+import 'package:flying_school/pages/authentication/validator.dart';
 
+enum EmailPasswordSignInFormType { signIn, register, forgotPassword }
 
-enum EmailPasswordSignInFormType {signIn, register, forgotPassword}
-
-class EmailPasswordSignInModel with EmailAndPasswordValidators, ChangeNotifier{
+class EmailPasswordSignInModel with EmailAndPasswordValidators, ChangeNotifier {
   EmailPasswordSignInModel({
     @required this.auth,
     this.email = '',
     this.password = '',
+    this.confirmPassword = '',
     this.formType = EmailPasswordSignInFormType.signIn,
     this.isLoading = false,
     this.submitted = false,
@@ -19,147 +19,163 @@ class EmailPasswordSignInModel with EmailAndPasswordValidators, ChangeNotifier{
 
   String email;
   String password;
+  String confirmPassword;
   EmailPasswordSignInFormType formType;
   bool isLoading;
   bool submitted;
 
-  Future<bool> submit() async{
-    try{
-      updateWith(submitted:true);
-      if(!canSubmit){
+  Future<bool> submit() async {
+    try {
+      updateWith(submitted: true);
+      if (!canSubmit) {
         return false;
       }
       updateWith(isLoading: true);
       switch (formType) {
         case EmailPasswordSignInFormType.signIn:
-        await auth.signInWithEmailAndPassword(email, password);
-        break;
+          await auth.signInWithEmailAndPassword(email, password);
+          break;
         case EmailPasswordSignInFormType.register:
-        await auth.createUserWithEmailAndPassword(email, password);
-        break;
+          await auth.createUserWithEmailAndPassword(email, password);
+          break;
         case EmailPasswordSignInFormType.forgotPassword:
-        await auth.sendPasswordResetMail(email);
-        updateWith(isLoading: false);
-               break;
-              }
-              return true;
-            }catch(e){
-              updateWith(isLoading: false);
-              rethrow;
-            }
-          }
+          await auth.sendPasswordResetMail(email);
+          updateWith(isLoading: false);
+          break;
+      }
+      return true;
+    } catch (e) {
+      updateWith(isLoading: false);
+      rethrow;
+    }
+  }
 
-          void updateEmail(String email) => updateWith(email: email);
+  void updateEmail(String email) => updateWith(email: email);
 
-          void updatePassword(String password) => updateWith(password: password);
+  void updatePassword(String password) => updateWith(password: password);
 
-          void updateFormType(EmailPasswordSignInFormType formType){
-            updateWith(
-              email: '',
-              password: '',
-              formType: formType,
-              isLoading: false,
-              submitted: false,
-            );
-          }
-        
-          void updateWith({
-            String email,
-            String password,
-            EmailPasswordSignInFormType formType,
-            bool submitted,
-            bool isLoading}) {
-              this.email =email ?? this.email;
-              this.password = password ?? this.password;
-              this.formType = formType ?? this.formType;
-              this.isLoading = isLoading ?? this.isLoading;
-              this.submitted = submitted ?? this.submitted;
-              notifyListeners();
-            }
+  void updateFormType(EmailPasswordSignInFormType formType) {
+    updateWith(
+      email: '',
+      password: '',
+      formType: formType,
+      isLoading: false,
+      submitted: false,
+    );
+  }
 
-            String get passwordLabelText{
-              if(formType == EmailPasswordSignInFormType.register){
-                return Strings.password8CharactersLabel;
-              }
-              return Strings.passwordLabel;
-            }
+  void updateWith(
+      {String email,
+      String password,
+      EmailPasswordSignInFormType formType,
+      bool submitted,
+      bool isLoading}) {
+    this.email = email ?? this.email;
+    this.password = password ?? this.password;
+    this.formType = formType ?? this.formType;
+    this.isLoading = isLoading ?? this.isLoading;
+    this.submitted = submitted ?? this.submitted;
+    notifyListeners();
+  }
 
-            String get primaryButtonText{
-              return <EmailPasswordSignInFormType, String>{
-                EmailPasswordSignInFormType.register: Strings.createAnAccount,
-                EmailPasswordSignInFormType.signIn: Strings.signIn,
-                EmailPasswordSignInFormType.forgotPassword: Strings.sendResetLink,
-              }[formType];
-            }
+  String get passwordLabelText {
+    if (formType == EmailPasswordSignInFormType.register) {
+      return Strings.password8CharactersLabel;
+    }
+    return Strings.passwordLabel;
+  }
 
-            String get secondaryButtonText{
-              return <EmailPasswordSignInFormType, String>{
-                EmailPasswordSignInFormType.register: Strings.haveAnAccount,
-                EmailPasswordSignInFormType.signIn: Strings.needAnAccount,
-                EmailPasswordSignInFormType.forgotPassword: Strings.backToSignIn,
-              }[formType];
-            }
+  String get confirmLabelText {
+    if (formType == EmailPasswordSignInFormType.register) {
+      return Strings.passwordConfirm;
+    }
+    return Strings.passwordConfirmPassword;
+  }
 
-            EmailPasswordSignInFormType get secondaryActionFormType{
-              return <EmailPasswordSignInFormType, EmailPasswordSignInFormType>{
-                EmailPasswordSignInFormType.register: EmailPasswordSignInFormType.signIn,
-                EmailPasswordSignInFormType.signIn: EmailPasswordSignInFormType.register,
-                EmailPasswordSignInFormType.forgotPassword: EmailPasswordSignInFormType.signIn,
-              }[formType];
-            }
+  String get primaryButtonText {
+    return <EmailPasswordSignInFormType, String>{
+      EmailPasswordSignInFormType.register: Strings.createAnAccount,
+      EmailPasswordSignInFormType.signIn: Strings.signIn,
+      EmailPasswordSignInFormType.forgotPassword: Strings.sendResetLink,
+    }[formType];
+  }
 
-            String get errorAlertTitle{
-              return<EmailPasswordSignInFormType, String>{
-                EmailPasswordSignInFormType.register: Strings.registrationFailed,
-                EmailPasswordSignInFormType.signIn: Strings.signInFailed,
-                EmailPasswordSignInFormType.forgotPassword: Strings.passwordResetfailed,
-              }[formType];
-            }
-            String get title{
-              return <EmailPasswordSignInFormType, String>{
-                EmailPasswordSignInFormType.register: Strings.register,
-                EmailPasswordSignInFormType.signIn: Strings.signIn,
-                EmailPasswordSignInFormType.forgotPassword: Strings.forgotPassword
+  String get secondaryButtonText {
+    return <EmailPasswordSignInFormType, String>{
+      EmailPasswordSignInFormType.register: Strings.haveAnAccount,
+      EmailPasswordSignInFormType.signIn: Strings.needAnAccount,
+      EmailPasswordSignInFormType.forgotPassword: Strings.backToSignIn,
+    }[formType];
+  }
 
-              }[formType];
-            }
-            bool get canSubmitEmail{
-              return emailSubmitValidator.isValid(email);
-            }
+  EmailPasswordSignInFormType get secondaryActionFormType {
+    return <EmailPasswordSignInFormType, EmailPasswordSignInFormType>{
+      EmailPasswordSignInFormType.register: EmailPasswordSignInFormType.signIn,
+      EmailPasswordSignInFormType.signIn: EmailPasswordSignInFormType.register,
+      EmailPasswordSignInFormType.forgotPassword:
+          EmailPasswordSignInFormType.signIn,
+    }[formType];
+  }
 
-            bool get canSubmitPassword{
-              if(formType == EmailPasswordSignInFormType.register){
-                return passwordRegisterSubmitValidator.isValid(password);
-              }
-              return passwordRegisterSubmitValidator.isValid(password);
-            }
+  String get errorAlertTitle {
+    return <EmailPasswordSignInFormType, String>{
+      EmailPasswordSignInFormType.register: Strings.registrationFailed,
+      EmailPasswordSignInFormType.signIn: Strings.signInFailed,
+      EmailPasswordSignInFormType.forgotPassword: Strings.passwordResetfailed,
+    }[formType];
+  }
 
-            bool get canSubmit{
-              final bool canSubmitFields =
-               formType == EmailPasswordSignInFormType.forgotPassword
-               ? canSubmitEmail
-               : canSubmitPassword && canSubmitPassword;
-               return canSubmitFields && !isLoading;
-            }
+  String get title {
+    return <EmailPasswordSignInFormType, String>{
+      EmailPasswordSignInFormType.register: Strings.register,
+      EmailPasswordSignInFormType.signIn: Strings.signIn,
+      EmailPasswordSignInFormType.forgotPassword: Strings.forgotPassword
+    }[formType];
+  }
 
-            String get emailErrorText{
-              final bool showErrorText =submitted && !canSubmitEmail;
-              final String errorText = email.isEmpty
-              ? Strings.invalidEmailEmpty
-              : Strings.invalidEmailErrorText;
-              return showErrorText ? errorText : null;
-            }
-            String get passwordErrorText{
-              final bool showErrorText = submitted && !canSubmitPassword;
-              final String errorText = password.isEmpty
-              ? Strings.invalidPasswordEmpty
-              :Strings.invalidPasswordTooShort;
-              return showErrorText ? errorText : null;
-            }
+  bool get canSubmitEmail {
+    return emailSubmitValidator.isValid(email);
+  }
 
-            @override
-            String toString(){
-              return 'email: $email, password: $password, formType: $formType, isLoading, $submitted';
-            }
-  
+  bool get canSubmitPassword {
+    if (formType == EmailPasswordSignInFormType.register) {
+      return passwordRegisterSubmitValidator.isValid(password);
+    }
+    return passwordRegisterSubmitValidator.isValid(password);
+  }
+
+  bool get canSubmitConfirmPassWord {
+    if (formType == EmailPasswordSignInFormType.register) {
+      return passwordRegisterSubmitValidator.isValid(confirmPassword);
+    }
+  }
+
+  bool get canSubmit {
+    final bool canSubmitFields =
+        formType == EmailPasswordSignInFormType.forgotPassword
+            ? canSubmitEmail
+            : canSubmitPassword && canSubmitPassword;
+    return canSubmitFields && !isLoading;
+  }
+
+  String get emailErrorText {
+    final bool showErrorText = submitted && !canSubmitEmail;
+    final String errorText = email.isEmpty
+        ? Strings.invalidEmailEmpty
+        : Strings.invalidEmailErrorText;
+    return showErrorText ? errorText : null;
+  }
+
+  String get passwordErrorText {
+    final bool showErrorText = submitted && !canSubmitPassword;
+    final String errorText = password.isEmpty
+        ? Strings.invalidPasswordEmpty
+        : Strings.invalidPasswordTooShort;
+    return showErrorText ? errorText : null;
+  }
+
+  @override
+  String toString() {
+    return 'email: $email, password: $password, formType: $formType, isLoading, $submitted';
+  }
 }

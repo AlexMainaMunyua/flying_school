@@ -27,7 +27,11 @@ class EmailPasswordSignInPage extends StatefulWidget {
   static Widget create(BuildContext context, {VoidCallback onSignedIn}) {
     final AuthService auth = Provider.of<AuthService>(context);
     return ChangeNotifierProvider<EmailPasswordSignInModel>(
+<<<<<<< HEAD
       builder: (_) => EmailPasswordSignInModel(auth: auth),
+=======
+      create: (_) => EmailPasswordSignInModel(auth: auth),
+>>>>>>> bb8cf2b16dc5739ed66c9cfabdc6e62d0406311e
       child: Consumer<EmailPasswordSignInModel>(
         builder: (_, EmailPasswordSignInModel model, __) =>
             EmailPasswordSignInPage._(
@@ -90,11 +94,25 @@ class _EmailPasswordSignInPageState extends State<EmailPasswordSignInPage> {
   void _emailEditingComplete() {
     if (model.canSubmitEmail) {
       _node.nextFocus();
+<<<<<<< HEAD
     }
   }
 
   void _passwordEditingComplete() {
     if (model.canSubmitEmail) {
+=======
+    }
+  }
+
+  void _passwordEditingComplete() {
+    if (model.canSubmitEmail) {
+      _node.nextFocus();
+    }
+  }
+
+  void _confirmPasswordEditingComplete() {
+    if (model.canSubmit) {
+>>>>>>> bb8cf2b16dc5739ed66c9cfabdc6e62d0406311e
       _node.nextFocus();
     }
   }
@@ -123,6 +141,7 @@ class _EmailPasswordSignInPageState extends State<EmailPasswordSignInPage> {
       inputFormatters: <TextInputFormatter>[model.emailInputFormatter],
     );
   }
+<<<<<<< HEAD
 
   Widget _buildPasswordField() {
     return TextField(
@@ -130,6 +149,33 @@ class _EmailPasswordSignInPageState extends State<EmailPasswordSignInPage> {
       controller: _passwordController,
       decoration: InputDecoration(
         labelText: model.passwordLabelText,
+=======
+
+  Widget _buildPasswordField() {
+    return TextField(
+      key: Key('password'),
+      controller: _passwordController,
+      decoration: InputDecoration(
+        labelText: model.passwordLabelText,
+        errorText: model.passwordErrorText,
+        enabled: !model.isLoading,
+      ),
+      obscureText: true,
+      autocorrect: false,
+      textInputAction: TextInputAction.done,
+      keyboardAppearance: Brightness.light,
+      onChanged: model.updatePassword,
+      onEditingComplete: _passwordEditingComplete,
+    );
+  }
+
+  Widget _buildConfirmPasswordField() {
+    return TextField(
+      key: Key('password'),
+      // controller: _passwordController,
+      decoration: InputDecoration(
+        labelText: model.confirmLabelText,
+>>>>>>> bb8cf2b16dc5739ed66c9cfabdc6e62d0406311e
         errorText: model.passwordErrorText,
         enabled: !model.isLoading,
       ),
@@ -159,6 +205,16 @@ class _EmailPasswordSignInPageState extends State<EmailPasswordSignInPage> {
             ),
             _buildPasswordField(),
           ],
+<<<<<<< HEAD
+=======
+          if (model.formType ==
+              EmailPasswordSignInFormType.register) ...<Widget>[
+            SizedBox(
+              height: 8.0,
+            ),
+            _buildConfirmPasswordField(),
+          ],
+>>>>>>> bb8cf2b16dc5739ed66c9cfabdc6e62d0406311e
           SizedBox(
             height: 8.0,
           ),

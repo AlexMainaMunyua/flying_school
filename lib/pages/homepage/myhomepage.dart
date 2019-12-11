@@ -1,0 +1,63 @@
+import 'package:flutter/material.dart';
+import 'package:flying_school/core/model/topicsModel.dart';
+import 'package:flying_school/core/view/CrudModel.dart';
+import 'package:loading/indicator/ball_pulse_indicator.dart';
+import 'package:loading/loading.dart';
+
+import 'package:provider/provider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+import 'topicBuilder.dart';
+
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({this.isLoading});
+  final bool isLoading;
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage>
+    with SingleTickerProviderStateMixin {
+  AnimationController _animationController;
+
+  List<Topics> topics;
+
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+        vsync: this, duration: Duration(milliseconds: 6000));
+
+    _animationController.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final topicProvider = Provider.of<CRUDModel>(context);
+    return StreamBuilder<QuerySnapshot>(
+      stream: topicProvider.fetchTopicsAsStream(),
+      builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        if (snapshot.hasData) {
+          topics = snapshot.data.documents
+              .map((doc) => Topics.fromMap(doc.data, doc.documentID))
+              .toList();
+          return ListView.builder(
+            itemCount: topics.length,
+            itemBuilder: (context, index) => TopicBuilder(topic: topics[index]),
+          );
+        } else {
+          return Center(
+               child: CircularProgressIndicator(
+                 backgroundColor:Colors.pink
+               ),
+            /* child: Loading(
+              color: Colors.pink,
+              indicator: BallPulseIndicator(),
+              size: 100.0,
+            ), */
+          );
+        }
+      },
+    );
+  }
+}

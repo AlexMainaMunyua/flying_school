@@ -14,22 +14,34 @@ description: A new Flutter application.
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.2.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  provider:
   get_it:
+  firebase_auth: ^0.14.0+5
+  provider: ^3.1.0
+  firebase_dynamic_links: ^0.5.0+1
+  rxdart: ^0.22.3
+  flutter_secure_storage: ^3.3.1+1
   cloud_firestore:
-  firebase_auth:
   firebase_database:
-  flutter_secure_storage:
-  firebase_dynamic_links:
-  rxdart:
+  url_launcher: ^5.2.7
+  intl:
   webview_flutter:
-  flare_flutter:
+  share:
+  http:
   flutter_launcher_icons:
+  flutter_spinkit: "^4.1.0"
+  loading: ^1.0.2
+  zefyr:
+    git:
+      url: git://github.com/memspace/zefyr.git
+      ref: fix-text-input-connection-closed
+      path: packages/zefyr
+  
+
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -40,8 +52,8 @@ dev_dependencies:
     sdk: flutter
 
 flutter_icons:
-  android: "launcher_icon"
   ios: true
+  android: true
   image_path: "images/logo.jpg"
 
 
@@ -53,7 +65,15 @@ flutter_icons:
 
 # The following section is specific to Flutter.
 flutter:
+  fonts:
+    - family: PermanentMarker
+      fonts:
+        - asset: fonts/PermanentMarker-Regular.ttf
+    - family: Righteous
+      fonts:
+        - asset: fonts/Righteous-Regular.ttf
 
+        
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

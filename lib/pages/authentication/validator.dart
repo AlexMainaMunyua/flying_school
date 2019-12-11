@@ -1,63 +1,64 @@
-
 import 'package:flutter/services.dart';
 
-abstract class StringValidator{
+abstract class StringValidator {
   bool isValid(String value);
 }
 
-class RegexValidator implements StringValidator{
+class RegexValidator implements StringValidator {
   RegexValidator({this.regexSource});
   final String regexSource;
 
   @override
   bool isValid(String value) {
-    try{
+    try {
       final RegExp regex = RegExp(regexSource);
       final Iterable<Match> matches = regex.allMatches(value);
-      for(Match match in matches){
-        if(match.start == 0 && match.end == value.length){
+      for (Match match in matches) {
+        if (match.start == 0 && match.end == value.length) {
           return true;
         }
       }
       return false;
-    }catch(e){
+    } catch (e) {
       assert(false, e.toString());
       return true;
-    } 
+    }
   }
 }
 
-class ValidatorInpuFormatter implements TextInputFormatter{
+class ValidatorInpuFormatter implements TextInputFormatter {
   ValidatorInpuFormatter({this.editingValidator});
 
   final StringValidator editingValidator;
 
   @override
-  TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
+  TextEditingValue formatEditUpdate(
+      TextEditingValue oldValue, TextEditingValue newValue) {
     final bool oldValueValid = editingValidator.isValid(oldValue.text);
     final bool newValueValid = editingValidator.isValid(newValue.text);
-    if (oldValueValid && !newValueValid){
+    if (oldValueValid && !newValueValid) {
       return oldValue;
     }
     return newValue;
-  } 
+  }
 }
 
-class EmailEditingRegexValidator extends RegexValidator{
-  EmailEditingRegexValidator(): super(regexSource: '^(|\\S)+\$');
+class EmailEditingRegexValidator extends RegexValidator {
+  EmailEditingRegexValidator() : super(regexSource: '^(|\\S)+\$');
 }
 
-class EmailSubmitRexValidator extends RegexValidator{
-  EmailSubmitRexValidator(): super(regexSource: '^\\S+@\\S+\\.\\S+\$');
+class EmailSubmitRexValidator extends RegexValidator {
+  EmailSubmitRexValidator() : super(regexSource: '^\\S+@\\S+\\.\\S+\$');
 }
 
-class NonEmptyStringValidator extends StringValidator{
+class NonEmptyStringValidator extends StringValidator {
   @override
   bool isValid(String value) {
     return value.isNotEmpty;
   }
 }
-class MinLengthStringValidator extends StringValidator{
+
+class MinLengthStringValidator extends StringValidator {
   MinLengthStringValidator(this.minLength);
   final int minLength;
 
@@ -67,10 +68,12 @@ class MinLengthStringValidator extends StringValidator{
   }
 }
 
-class EmailAndPasswordValidators{
+class EmailAndPasswordValidators {
   final TextInputFormatter emailInputFormatter =
-  ValidatorInpuFormatter(editingValidator: EmailSubmitRexValidator());
+      ValidatorInpuFormatter(editingValidator: EmailSubmitRexValidator());
   final StringValidator emailSubmitValidator = EmailSubmitRexValidator();
-  final StringValidator passwordRegisterSubmitValidator = MinLengthStringValidator(8);
-  final StringValidator passwordSignInSubmitValidator = NonEmptyStringValidator();
+  final StringValidator passwordRegisterSubmitValidator =
+      MinLengthStringValidator(8);
+  final StringValidator passwordSignInSubmitValidator =
+      NonEmptyStringValidator();
 }
