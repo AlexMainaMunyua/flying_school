@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flying_school/pages/dashboard/create.dart';
+import 'package:flying_school/pages/dashboard/users.dart';
 
 import '../home.dart';
 
@@ -21,7 +22,7 @@ class _DashboardPageState extends State<DashboardPage> {
    final _pageOption = [
     HomePage(),
     CreateContent(),
-    HomePage(),
+    Users(),
   ]; 
 
   @override
