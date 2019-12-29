@@ -4,9 +4,9 @@ import 'package:webview_flutter/webview_flutter.dart';
 import 'dart:async';
 
 class TopicDetails extends StatefulWidget {
-  final Topics topic;
+  final Topics topics;
 
-  TopicDetails({@required this.topic});
+  TopicDetails({@required this.topics});
 
   @override
   _TopicDetailsState createState() => _TopicDetailsState();
@@ -19,7 +19,7 @@ class _TopicDetailsState extends State<TopicDetails> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('${widget.topic.topicName}'),
+        title: Text('${widget.topics.topicName}'),
       ),
       body: Container(
         color: Colors.white,
@@ -28,7 +28,7 @@ class _TopicDetailsState extends State<TopicDetails> {
           controller: controller,
           children: <Widget>[
             WebView(
-              initialUrl: '${widget.topic.content}',
+              initialUrl: '${widget.topics.content}',
               javascriptMode: JavascriptMode.unrestricted,
               onWebViewCreated: (WebViewController controller) {
                 _controller.complete(controller);

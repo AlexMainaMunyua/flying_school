@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flying_school/core/model/topicsModel.dart';
@@ -12,9 +14,10 @@ class CRUDModel extends ChangeNotifier {
 
   Future<List<Topics>> fetchTopics() async {
     var results = await _api.getDataCollection();
-    topics = results.documents
+   
+     topics = results.documents
         .map((doc) => Topics.fromMap(doc.data, doc.documentID))
-        .toList();
+        .toList(); 
     return topics;
   }
 
@@ -42,6 +45,47 @@ class CRUDModel extends ChangeNotifier {
     return result;
   }
 }
+//////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
+// class CRUDSubTopicModel extends ChangeNotifier {
+//   SubTopicAPI _api = locator<SubTopicAPI>();
+
+//   List<SubTopic> subtopics;
+
+//   Future<List<SubTopic>> fetchsubTopic() async {
+//     var results = await _api.getDataCollection();
+//     subtopics = results.documents
+//         .map((doc) => SubTopic.fromMap(doc.data, doc.documentID))
+//         .toList();
+//     return subtopics;
+//   }
+
+//   Stream<QuerySnapshot> fetchSubTopicAsStream() {
+//     return _api.streamDataCollection();
+//   }
+
+//   Future<SubTopic> getSubTopicById(String id) async {
+//     var doc = await _api.getDocumentById(id);
+//     return SubTopic.fromMap(doc.data, doc.documentID);
+//   }
+
+//   Future removeSubTopic(String id) async {
+//     await _api.removeDocument(id);
+//     return;
+//   }
+
+//   Future updateSubTopic(Topics data, String id) async {
+//     await _api.updateDocument(data.toJson(), id);
+//     return;
+//   }
+
+//   Future addSubTopic(Topics data) async {
+//     var result = await _api.addDocument(data.toJson());
+//     return result;
+//   }
+// }
+
+
 ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////
 

@@ -8,6 +8,9 @@ void setupLocator() {
   locator.registerLazySingleton(()=> TopicApi('Topics'));
   locator.registerLazySingleton(()=> CRUDModel());
 
+  locator.registerLazySingleton(()=> SubTopicAPI('SubTopic'));
+  // locator.registerLazySingleton(()=> CRUDSubTopicModel());
+
   locator.registerLazySingleton(()=> BlogApi('Blog'));
   locator.registerLazySingleton(()=> BlogCRUDModel());
 
@@ -16,3 +19,4 @@ void setupLocator() {
 
 
 }
+  

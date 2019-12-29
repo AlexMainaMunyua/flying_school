@@ -38,6 +38,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: <SingleChildCloneableWidget>[
         ChangeNotifierProvider(create: (_) => locator<CRUDModel>()),
+        // ChangeNotifierProvider(create: (_)=> locator<CRUDSubTopicModel>()),
         ChangeNotifierProvider(
           create: (_) => locator<BlogCRUDModel>(),
         ),
